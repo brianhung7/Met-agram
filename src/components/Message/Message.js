@@ -52,42 +52,46 @@ const Comment = ({messages, setMessages}) => {
     return (
         <CardMedia>
             {messages?.map((comment, index) => (
-                <CardMedia sx={{display:'flex', justifyContent:'center'}}>
-                    <AccountCircleIcon />
-                    <Typography sx={{fontWeight:'bold'}}>
-                        MetLover  
-                    </Typography>
-                    <Typography>
-                       : {comment}
-                    </Typography>
-                    <Tooltip title="Edit">
-                        <EditIcon sx={editStyle} variant="outlined" cursor="pointer" onClick={() => handleClickOpen(comment, index)} />
-                    </Tooltip>
-                    <Dialog open={open} onClose={handleClose}>
-                        <DialogTitle>Update Your Message</DialogTitle>
-                        <DialogContent>
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            label="Edit your message"
-                            value = {updatedText}
-                            fullWidth
-                            variant="standard"
-                            onInput={(event) => setUpdatedText(event.target.value)}
-                        />
-                        </DialogContent>
-                        <DialogActions>
-                        <Button onClick={handleClose}>Cancel</Button>
-                        <Button onClick={updateMessage}>Update</Button>
-                        </DialogActions>
-                    </Dialog>
-                    <Tooltip title="Delete">
-                        <DeleteOutlineIcon title="Unlike" sx={deleteStyle} cursor="pointer" onClick={() => deleteMessage(index)}/>
-                    </Tooltip>
+                <CardMedia sx={{display:'flex', justifyContent:'space-between', mx:2}}>
+                    <CardMedia sx={{display:'flex'}}>
+                        <AccountCircleIcon />
+                        <Typography sx={{fontWeight:'bold'}}>
+                            MetLover  
+                        </Typography>
+                        <Typography>
+                        : {comment}
+                        </Typography>
+                    </CardMedia>
+                    <CardMedia sx={{display:'flex'}}>
+                        <Tooltip title="Edit">
+                            <EditIcon sx={editStyle} variant="outlined" cursor="pointer" onClick={() => handleClickOpen(comment, index)} />
+                        </Tooltip>
+                        <Dialog open={open} onClose={handleClose}>
+                            <DialogTitle>Update Your Message</DialogTitle>
+                            <DialogContent>
+                            <TextField
+                                autoFocus
+                                margin="dense"
+                                label="Edit your message"
+                                value = {updatedText}
+                                fullWidth
+                                variant="standard"
+                                onInput={(event) => setUpdatedText(event.target.value)}
+                            />
+                            </DialogContent>
+                            <DialogActions>
+                            <Button onClick={handleClose}>Cancel</Button>
+                            <Button onClick={updateMessage}>Update</Button>
+                            </DialogActions>
+                        </Dialog>
+                        <Tooltip title="Delete">
+                            <DeleteOutlineIcon title="Unlike" sx={deleteStyle} cursor="pointer" onClick={() => deleteMessage(index)}/>
+                        </Tooltip>
+                    </CardMedia>
                 </CardMedia>
             ))}
             <Box component="form" onSubmit={addMessage} sx={formStyle}>
-                <TextField id="outlined-basic" label="Leave a Message!" variant="outlined" onInput={(event) => setText(event.target.value)}/>
+                <TextField id="outlined-basic" label="Leave a critique!" variant="outlined" onInput={(event) => setText(event.target.value)}/>
                 <Button disabled={text === ''}endIcon={<AddCommentIcon />} type='submit' variant='contained'>Send</Button>
             </Box>
         </CardMedia>
