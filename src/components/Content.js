@@ -15,10 +15,11 @@ const Content = () => {
     const [content, setContent] = useState(null)
     const [page, setPage] = useState(436121)
     const [error, setError] = useState(null)
-    const [like, setLike] = useState(null)
+    const [like, setLike] = useState(false)
     const [messages, setMessages] = useState([])
 
     // const api = `https://collectionapi.metmuseum.org/public/collection/v1/objects/${page}`
+
     //Error/exception handling for our fetch request
     const checkErrors = (res) => {
         if(!res.ok){
@@ -54,12 +55,12 @@ const Content = () => {
                 }
                 setContent(info)
                 setError(null)
-                setLike(null)
+                setLike(false)
                 setMessages([])
             })
             .catch((error) => {
-                console.log(error);
-                console.log("Inside fetch request", page)
+                console.log("Fetch request error", error);
+                console.log("Page: ", page)
                 setError(error)
             })
     },[page])
