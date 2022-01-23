@@ -85,7 +85,7 @@ const Comment = ({messages, setMessages}) => {
                             </DialogActions>
                         </Dialog>
                         <Tooltip title="Delete">
-                            <DeleteOutlineIcon title="Unlike" sx={deleteStyle} cursor="pointer" onClick={() => deleteMessage(index)}/>
+                            <DeleteOutlineIcon sx={deleteStyle} cursor="pointer" onClick={() => deleteMessage(index)}/>
                         </Tooltip>
                     </CardMedia>
                 </CardMedia>
