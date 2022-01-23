@@ -1,16 +1,8 @@
 import React from "react";
 import { AppBar, Typography } from "@mui/material";
-
-const navStyling = {
-    display: 'flex',
-    alignItems: 'center',
-    textAlign: 'center',
-    py: 2,
-    bgcolor: '#DC143C',
-}
+import { navStyling } from "./NavbarStyles";
 
 const Navbar = () => {
-
     return (
         <AppBar sx={navStyling}>
             <Typography variant='h5'>The Met presents over 5,000 years of art</Typography>

@@ -1,15 +1,9 @@
 import React from 'react';
-import Art from './Art';
+import Art from '../Art/Art';
 import { CircularProgress, Container, Button, Typography } from '@mui/material';
+import { centerStyle, leftButtonStyle, rightButtonStyle } from './ContentStyles';
 
 const{useState, useEffect} = React;
-
-const centerStyle = {
-    position: 'fixed',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%),'
-}
 
 const Content = () => {
     const [content, setContent] = useState(null)
@@ -68,21 +62,11 @@ const Content = () => {
 
     return (
         <Container sx={{my:10}} align="center">
-            <Button variant="contained" style={{
-                position: 'fixed',
-                top: '50%',
-                left: '10%',
-                transform: 'translate(-50%, -50%)'
-            }} onClick={() => updatePage('decrement')}>Prev</Button>
+            <Button variant="contained" style={leftButtonStyle} onClick={() => updatePage('decrement')}>Prev</Button>
             {content ? <Art content={content} like={like} setLike={setLike} messages={messages} setMessages={setMessages}/> : 
-            error ? <><Typography variant='h5'>{error.message} Try another artpiece! </Typography> </> : 
+            error ? <><Typography variant='h5' >{error.message} Try another artpiece! </Typography> </> : 
             <CircularProgress style={centerStyle}/>}
-            <Button variant="contained" style={{
-                position: 'fixed',
-                top: '50%',
-                left: '85%',
-                transform: 'translate(-50%, -50%)'
-            }} onClick={() => updatePage('increment')}>Next</Button>
+            <Button variant="contained" style={rightButtonStyle} onClick={() => updatePage('increment')}>Next</Button>
         </Container>
     )
 }

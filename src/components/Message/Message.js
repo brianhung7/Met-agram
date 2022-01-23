@@ -1,6 +1,7 @@
 import React from "react";
 import { CardMedia, Typography, Box, TextField, Button } from "@mui/material";
 import AddCommentIcon from '@mui/icons-material/AddComment';
+import { formStyle } from "./MessageStyles";
 const {useState} = React;
 
 const Comment = ({messages, setMessages}) => {
@@ -29,7 +30,7 @@ const Comment = ({messages, setMessages}) => {
                     </Typography>
                 </CardMedia>
             ))}
-            <Box component="form" onSubmit={updateMessages} sx={{display:'flex', justifyContent:'center', alignContent:'center', my:2}}>
+            <Box component="form" onSubmit={updateMessages} sx={formStyle}>
                 <TextField id="outlined-basic" label="Leave a Message!" variant="outlined" onInput={(event) => setText(event.target.value)}/>
                 <Button endIcon={<AddCommentIcon />} type='submit' variant='contained'>Send</Button>
             </Box>
