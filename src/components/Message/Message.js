@@ -1,5 +1,5 @@
 import React from "react";
-import { CardMedia, Typography, Box, TextField, Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
+import { CardMedia, Typography, Box, TextField, Button, Dialog, DialogActions, DialogContent, DialogTitle, Tooltip } from "@mui/material";
 import AddCommentIcon from '@mui/icons-material/AddComment';
 import { formStyle, editStyle, deleteStyle } from "./MessageStyles";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -60,7 +60,9 @@ const Comment = ({messages, setMessages}) => {
                     <Typography>
                        : {comment}
                     </Typography>
-                    <EditIcon sx={editStyle} variant="outlined" cursor="pointer" onClick={() => handleClickOpen(comment, index)} />
+                    <Tooltip title="Edit">
+                        <EditIcon sx={editStyle} variant="outlined" cursor="pointer" onClick={() => handleClickOpen(comment, index)} />
+                    </Tooltip>
                     <Dialog open={open} onClose={handleClose}>
                         <DialogTitle>Update Your Message</DialogTitle>
                         <DialogContent>
@@ -79,7 +81,9 @@ const Comment = ({messages, setMessages}) => {
                         <Button onClick={updateMessage}>Update</Button>
                         </DialogActions>
                     </Dialog>
-                    <DeleteOutlineIcon sx={deleteStyle} cursor="pointer" onClick={() => deleteMessage(index)}/>
+                    <Tooltip title="Delete">
+                        <DeleteOutlineIcon title="Unlike" sx={deleteStyle} cursor="pointer" onClick={() => deleteMessage(index)}/>
+                    </Tooltip>
                 </CardMedia>
             ))}
             <Box component="form" onSubmit={addMessage} sx={formStyle}>
