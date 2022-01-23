@@ -1,16 +1,25 @@
 import React from 'react';
 import Art from './Art';
 import { CircularProgress, Container, Button, Typography } from '@mui/material';
+
 const{useState, useEffect} = React;
 
+const centerStyle = {
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%),'
+}
 
 const Content = () => {
     const [content, setContent] = useState(null)
     const [page, setPage] = useState(436121)
     const [error, setError] = useState(null)
+    const [like, setLike] = useState(null)
+    const [messages, setMessages] = useState([])
 
-    const api = `https://collectionapi.metmuseum.org/public/collection/v1/objects/${page}`
-
+    // const api = `https://collectionapi.metmuseum.org/public/collection/v1/objects/${page}`
+    //Error/exception handling for our fetch request
     const checkErrors = (res) => {
         if(!res.ok){
             throw Error(res.statusText)
@@ -18,26 +27,7 @@ const Content = () => {
         return res
     }
 
-    const fetchData = async () => {
-        await fetch(api)
-            .then(checkErrors)
-            .then(response => response.json())
-            .then(data => {
-                let info = {
-                    'artist': data.artistDisplayName,
-                    'image': data.primaryImage,
-                    'title': data.title,
-                }
-                setContent(info)
-                setError(null)
-            })
-            .catch((error) => {
-                console.log(error);
-                console.log(page)
-                setError(error)
-            })
-    }
-
+    //Changes which api 'page' to grab data from
     const updatePage = (input) => {
         let currentPage = page;
         setContent(null)
@@ -53,7 +43,25 @@ const Content = () => {
     }
 
     useEffect(() => {
-        fetchData();
+        fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${page}`)
+            .then(checkErrors)
+            .then(response => response.json())
+            .then(data => {
+                let info = {
+                    'artist': data.artistDisplayName,
+                    'image': data.primaryImage,
+                    'title': data.title,
+                }
+                setContent(info)
+                setError(null)
+                setLike(null)
+                setMessages([])
+            })
+            .catch((error) => {
+                console.log(error);
+                console.log("Inside fetch request", page)
+                setError(error)
+            })
     },[page])
 
 
@@ -65,9 +73,9 @@ const Content = () => {
                 left: '10%',
                 transform: 'translate(-50%, -50%)'
             }} onClick={() => updatePage('decrement')}>Prev</Button>
-            {/* {content && !error ? <Art content={content} /> : <CircularProgress />}
-            {error ? <>{error.message}</> : <></>} */}
-            {content ? <Art content={content} /> : error ? <><Typography variant='h5' justifySelf='center'>{error.message} Try another artpiece! </Typography> </> : <CircularProgress />}
+            {content ? <Art content={content} like={like} setLike={setLike} messages={messages} setMessages={setMessages}/> : 
+            error ? <><Typography variant='h5'>{error.message} Try another artpiece! </Typography> </> : 
+            <CircularProgress style={centerStyle}/>}
             <Button variant="contained" style={{
                 position: 'fixed',
                 top: '50%',
