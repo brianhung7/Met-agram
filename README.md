@@ -5,7 +5,7 @@ Brian Pham's submission for Entera's Junior Engineer Code Test
 [View deployed version here](https://goofy-villani-6a3689.netlify.app/)
 ## About :books:
 
-   Entera.ai's code test was to create an page that renders art provided by the Met Museum's public API. I expanded upon this a little bit to show error handling when the endpoint is broken/returns an error by adding in the ability to change the 'page' on the API. Also added simple 'like/unlike' functionality as well as the ability to write messages on each artwork.
+   Entera.ai's code test was to create a webpage that renders art provided by the Met Museum's public API. I expanded upon this a little bit to show error handling when the endpoint is broken/returns an error by adding in the ability to change the 'page' on the API. Also added simple 'like/unlike' functionality as well as the ability to write messages on each artwork.
 
 
 ## Getting Started :rocket:
