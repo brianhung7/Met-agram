@@ -1,12 +1,13 @@
 import React from 'react';
 import Art from './Art';
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, Container } from '@mui/material';
 const{useState, useEffect} = React;
 
 
 const Content = () => {
     const [content, setContent] = useState(null)
     const [page, setPage] = useState(436121)
+    const [error, setError] = useState(null)
 
     const api = `https://collectionapi.metmuseum.org/public/collection/v1/objects/${page}`
 
@@ -28,6 +29,7 @@ const Content = () => {
                     'title': data.title,
                 }
                 setContent(info)
+                setError(null)
             })
             .catch(error => console.log(error))
     }
@@ -38,9 +40,9 @@ const Content = () => {
 
 
     return (
-        <>
+        <Container sx={{my:10}} align="center">
             {content ? <Art content={content} /> : <CircularProgress />}
-        </>
+        </Container>
     )
 }
 

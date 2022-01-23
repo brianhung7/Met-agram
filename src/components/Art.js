@@ -5,7 +5,7 @@ const Art = ({content}) => {
 
     return(
         <>
-            <Card>
+            <Card className="art">
                 <CardMedia>
                     <Typography> {content.title} </Typography>
                     <Typography> {content.artist} </Typography>
