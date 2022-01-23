@@ -1,6 +1,6 @@
 import React from 'react';
 import Art from './Art';
-import { CircularProgress, Container } from '@mui/material';
+import { CircularProgress, Container, Button } from '@mui/material';
 const{useState, useEffect} = React;
 
 
@@ -31,7 +31,25 @@ const Content = () => {
                 setContent(info)
                 setError(null)
             })
-            .catch(error => console.log(error))
+            .catch((error) => {
+                console.log(error);
+                console.log(page)
+                setError(error)
+            })
+    }
+
+    const updatePage = (input) => {
+        let currentPage = page;
+        setContent(null)
+        setError(null)
+        if(input === 'decrement' && currentPage > 2){
+            currentPage--
+        } else if (input === 'increment' && currentPage < 500000){
+            currentPage++
+        } else {
+            currentPage = 436121 //default value
+        }
+        setPage(currentPage)
     }
 
     useEffect(() => {
@@ -40,8 +58,12 @@ const Content = () => {
 
 
     return (
-        <Container sx={{my:10}} align="center">
-            {content ? <Art content={content} /> : <CircularProgress />}
+        <Container sx={{my:10, display:'flex', justifyContent:'space-between'}} align="center">
+            <Button variant="contained" onClick={() => updatePage('decrement')}>Prev</Button>
+            {/* {content && !error ? <Art content={content} /> : <CircularProgress />}
+            {error ? <>{error.message}</> : <></>} */}
+            {content ? <Art content={content} /> : error ? <>{error.message} Try another artpiece!</> : <CircularProgress />}
+            <Button variant="contained" onClick={() => updatePage('increment')}>Next</Button>
         </Container>
     )
 }
