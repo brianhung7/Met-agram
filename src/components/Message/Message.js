@@ -1,13 +1,27 @@
 import React from "react";
-import { CardMedia, Typography, Box, TextField, Button } from "@mui/material";
+import { CardMedia, Typography, Box, TextField, Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import AddCommentIcon from '@mui/icons-material/AddComment';
-import { formStyle } from "./MessageStyles";
+import { formStyle, editStyle, deleteStyle } from "./MessageStyles";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import EditIcon from '@mui/icons-material/Edit';
 const {useState} = React;
 
 const Comment = ({messages, setMessages}) => {
     const [text, setText] = useState('')
+    const [updatedText, setUpdatedText] = useState('')
+    const [open, setOpen] = useState(false)
+    const [messageIndex, setMessageIndex] = useState(null)
+
+    const handleClickOpen = (string, idx) => {
+        setOpen(true)
+        setMessageIndex(idx)
+        setUpdatedText(string)
+    }
+    
+    const handleClose = () => {
+        setOpen(false)
+    }
 
     const addMessage = (event) => {
         //Stop page from refreshing
@@ -21,11 +35,18 @@ const Comment = ({messages, setMessages}) => {
         event.target[0].value = ''
     }
 
-    const deleteComment = (index) =>{
+    const deleteMessage = (index) =>{
         let tempMessages = [...messages]
         //Removing selected message from array
         tempMessages.splice(index, 1)
         setMessages(tempMessages)
+    }
+
+    const updateMessage = () => {
+        let tempMessages = [...messages]
+        tempMessages[messageIndex] = updatedText
+        setMessages(tempMessages)
+        handleClose()
     }
 
     return (
@@ -39,7 +60,26 @@ const Comment = ({messages, setMessages}) => {
                     <Typography>
                        : {comment}
                     </Typography>
-                    <DeleteOutlineIcon sx={{ color: 'red' }} cursor="pointer" onClick={() => deleteComment(index)}/>
+                    <EditIcon sx={editStyle} variant="outlined" cursor="pointer" onClick={() => handleClickOpen(comment, index)} />
+                    <Dialog open={open} onClose={handleClose}>
+                        <DialogTitle>Update Your Message</DialogTitle>
+                        <DialogContent>
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            label="Edit your message"
+                            value = {updatedText}
+                            fullWidth
+                            variant="standard"
+                            onInput={(event) => setUpdatedText(event.target.value)}
+                        />
+                        </DialogContent>
+                        <DialogActions>
+                        <Button onClick={handleClose}>Cancel</Button>
+                        <Button onClick={updateMessage}>Update</Button>
+                        </DialogActions>
+                    </Dialog>
+                    <DeleteOutlineIcon sx={deleteStyle} cursor="pointer" onClick={() => deleteMessage(index)}/>
                 </CardMedia>
             ))}
             <Box component="form" onSubmit={addMessage} sx={formStyle}>
