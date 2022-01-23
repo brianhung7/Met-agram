@@ -4,15 +4,14 @@ Brian Pham's submission for Entera's Junior Engineer Code Test
 
 ## About :books:
 
-    Entera.ai's code test was to create an page that renders art provided by the Met Museum's public API. I expanded upon this a little bit to show error handling when the endpoint is broken/returns an error by adding in the ability to change the 'page' on the API. Also added simple 'like/unlike' functionality as well as the ability to write messages on each artwork.
+   Entera.ai's code test was to create an page that renders art provided by the Met Museum's public API. I expanded upon this a little bit to show error handling when the endpoint is broken/returns an error by adding in the ability to change the 'page' on the API. Also added simple 'like/unlike' functionality as well as the ability to write messages on each artwork.
 
 
 ## Getting Started :rocket:
-
-    1. Clone down the repo with ```git clone https://github.com/brianhung7/Met-agram.git```
-    2. Then install dependencies with ```npm install```
-    3. To start the application use ```npm start```
-    4. Check out ```http://localhost:3000/```
+   1. Clone down the repo with ```git clone https://github.com/brianhung7/Met-agram.git```
+   2. Then install dependencies with ```npm install```
+   3. To start the application use ```npm start```
+   4. Check out ```http://localhost:3000/```
 
 ## Features 📑
 
