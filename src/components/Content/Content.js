@@ -1,7 +1,7 @@
 import React from 'react';
 import Art from '../Art/Art';
 import { CircularProgress, Container, Button, Typography } from '@mui/material';
-import { centerStyle, leftButtonStyle, rightButtonStyle } from './ContentStyles';
+import { centerStyle, leftButtonStyle, rightButtonStyle, errorStyle } from './ContentStyles';
 
 const{useState, useEffect} = React;
 
@@ -61,10 +61,10 @@ const Content = () => {
 
 
     return (
-        <Container sx={{my:10}} align="center">
+        <Container sx={{my:10}} align='center'>
             <Button variant="contained" style={leftButtonStyle} onClick={() => updatePage('decrement')}>Prev</Button>
             {content ? <Art content={content} like={like} setLike={setLike} messages={messages} setMessages={setMessages}/> : 
-            error ? <><Typography variant='h5' >{error.message} Try another artpiece! </Typography> </> : 
+            error ? <><Typography variant='h5' style={errorStyle}>Sorry Error: {error.message}. Try another artpiece! </Typography> </> : 
             <CircularProgress style={centerStyle}/>}
             <Button variant="contained" style={rightButtonStyle} onClick={() => updatePage('increment')}>Next</Button>
         </Container>

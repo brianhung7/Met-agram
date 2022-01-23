@@ -18,3 +18,11 @@ export const rightButtonStyle = {
     left: '85%',
     transform: 'translate(-50%, -50%)'
 }
+
+export const errorStyle = {
+    margin: '0',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)'
+}
