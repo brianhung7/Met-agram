@@ -12,6 +12,7 @@ Brian Pham's submission for Entera's Junior Engineer Code Test
     1. Clone down the repo with ```git clone https://github.com/brianhung7/Met-agram.git```
     2. Then install dependencies with ```npm install```
     3. To start the application use ```npm start```
+    4. Check out ```http://localhost:3000/```
 
 ## Features 📑
 

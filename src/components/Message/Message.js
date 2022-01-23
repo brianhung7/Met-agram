@@ -63,7 +63,7 @@ const Comment = ({messages, setMessages}) => {
                         </Typography>
                     </CardMedia>
                     <CardMedia sx={{display:'flex'}}>
-                        <Tooltip title="Edit">
+                        <Tooltip title="Edit" placement="left">
                             <EditIcon sx={editStyle} variant="outlined" cursor="pointer" onClick={() => handleClickOpen(comment, index)} />
                         </Tooltip>
                         <Dialog open={open} onClose={handleClose}>
@@ -84,7 +84,7 @@ const Comment = ({messages, setMessages}) => {
                             <Button onClick={updateMessage}>Update</Button>
                             </DialogActions>
                         </Dialog>
-                        <Tooltip title="Delete">
+                        <Tooltip title="Delete" placement="right">
                             <DeleteOutlineIcon sx={deleteStyle} cursor="pointer" onClick={() => deleteMessage(index)}/>
                         </Tooltip>
                     </CardMedia>
